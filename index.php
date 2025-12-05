@@ -2,7 +2,22 @@
 include "connexion.php";
 include "statistique.php";
 
+$sql = "SELECT animal.*, habitats.nom_hab
+        FROM animal
+        JOIN habitats ON animal.habitat_id = habitats.id_hab
+        WHERE 1=1";
 
+if(!empty($_POST['habitat'])){
+    $habitat_filtre = $_POST['habitat'];
+    $sql .= " AND habitats.nom_hab = '$habitat_filtre'";
+}
+
+if(!empty($_POST['alimentation'])){
+    $type_filtre = $_POST['alimentation'];
+    $sql .= " AND animal.type_alimentaire = '$type_filtre'";
+}
+
+$result = $con->query($sql);
 
 
 
