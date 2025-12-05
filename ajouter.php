@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     if($con->query($sql)===TRUE){
         echo"Animal ajoute avec succes !";
-        header("location: index.php");
+        header("Location: index.php");
     }
     else{
         echo"ERREUR";

@@ -145,19 +145,18 @@ $result = $con->query($sql);
             <div class="flex gap-2">
  
             <!-- Bouton modifier -->
-            <form action="modifier.php" method="POST">
-             <input type="hidden" name="id_animal" 
-              value="<?= $animal["id_animal"] ?>">
-             <button class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600">
+            <form action="modifier.php" method="post">
+             <input type="hidden" name="id_animal"  value="<?= $animal["id_animal"] ?>">
+             <button type="submit" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600">
                  Modifier
                 </button>
                </form>
 
                     <!-- Bouton supprimer -->
-                    <form action="supprimer.php" method="POST">
+                    <form action="supprimer.php" method="post">
                    <input type="hidden" name="id_animal" 
                     value="<?= $animal["id_animal"] ?>">
-                    <button class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600">
+                    <button type="submit" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600">
                      Supprimer
                    </button>
                     </form>
@@ -206,6 +205,8 @@ $result = $con->query($sql);
             <!-- Modal body -->
            <form action="ajouter.php" method="post" class="pt-4 md:pt-6" enctype="multipart/form-data">
                 <div class="mb-4">
+                    <input type="hidden" name="id_animal" id="id_animal_mod">
+
                     <label for="nom" class="block mb-2.5 text-sm font-medium text-heading">Nom de l'animal</label>
                     <input type="text" name="nom" id="nom" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" placeholder="Nom animal" required />
                 </div>
