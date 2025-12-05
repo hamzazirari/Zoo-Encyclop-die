@@ -2,11 +2,7 @@
 include "connexion.php";
 include "statistique.php";
 
-$sql = "SELECT animal.*, habitats.nom_hab
-        FROM animal
-        JOIN habitats ON animal.habitat_id = habitats.id_hab";
 
-$result = $con->query($sql);
 
 
 
@@ -39,13 +35,13 @@ $result = $con->query($sql);
         <div class="bg-white rounded-xl shadow-md p-6 mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">🔍 Filtrer les animaux</h2>
             
-            <!-- PHP: Formulaire de filtrage - récupère les valeurs avec $_GET['habitat'] et $_GET['alimentation'] -->
-            <form action="index.php" method="GET" class="flex flex-wrap gap-4 items-end">
+        
+            <form action="index.php" method="POST" class="flex flex-wrap gap-4 items-end">
                 
                 <!-- Filtre par habitat -->
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-gray-700 font-medium mb-2">Habitat :</label>
-                    <!-- PHP: Ajoute selected="selected" si $_GET['habitat'] == valeur -->
+                   
                     <select name="habitat" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <option value="">Tous les habitats</option>
                         <option value="savane">Savane</option>
@@ -58,7 +54,7 @@ $result = $con->query($sql);
                 <!-- Filtre par type alimentaire -->
                 <div class="flex-1 min-w-[200px]">
                     <label class="block text-gray-700 font-medium mb-2">Type alimentaire :</label>
-                    <!-- PHP: Ajoute selected="selected" si $_GET['alimentation'] == valeur -->
+                    
                     <select name="alimentation" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <option value="">Tous les types</option>
                         <option value="carnivore">Carnivore</option>
