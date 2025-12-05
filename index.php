@@ -1,5 +1,6 @@
 <?php 
 include "connexion.php";
+include "statistique.php";
 
 $sql = "SELECT animal.*, habitats.nom_hab
         FROM animal
