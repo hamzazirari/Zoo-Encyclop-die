@@ -91,3 +91,40 @@ if(isset($_POST["id_animal"]) && !isset($_POST["nom_mod"])){
     exit;
 }
 
+// Étape 2 : Si on soumet le formulaire de modification
+if(isset($_POST["nom_mod"])){
+    
+    $id = $_POST["id_animal"];
+    $nom_mod = $_POST["nom_mod"];
+    $type_alimentaire_mod = $_POST["type_alimentaire_mod"];
+    $habitat_mod = $_POST["habitat_mod"];
+    
+    // Récupérer l'ancienne image
+    $result = $con->query("SELECT image FROM animal WHERE id_animal = $id");
+    $row = $result->fetch_assoc();
+    $ancienne_image = $row['image'];
+    
+    // Vérifier si nouvelle image
+    if(!empty($_FILES['image_mod']['name'])){
+        $image_mod = $_FILES['image_mod']['name'];
+        move_uploaded_file($_FILES['image_mod']['tmp_name'], "images/".$image_mod);
+    } else {
+        $image_mod = $ancienne_image;
+    }
+    
+    // UPDATE
+    $sql = "UPDATE animal 
+            SET nom_animal = '$nom_mod',
+                type_alimentaire = '$type_alimentaire_mod',
+                habitat_id = '$habitat_mod',
+                image = '$image_mod'
+            WHERE id_animal = $id";
+    
+    if($con->query($sql)){
+        header("Location: index.php");
+        exit;
+    } else {
+        echo "Erreur : " . $con->error;
+    }
+}
+?>
