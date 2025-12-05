@@ -265,8 +265,7 @@ $result = $con->query($sql);
             <div class="bg-red-100 p-6 rounded-xl shadow">
                 <h3 class="text-xl font-bold text-red-700">Carnivores</h3>
                 <p class="text-3xl font-extrabold text-red-900 mt-2">
-                    <!-- PHP: echo $countCarnivore -->
-                    0
+                    <?php echo $countCarnivore; ?>
                 </p>
             </div>
 
@@ -274,8 +273,8 @@ $result = $con->query($sql);
             <div class="bg-green-100 p-6 rounded-xl shadow">
                 <h3 class="text-xl font-bold text-green-700">Herbivores</h3>
                 <p class="text-3xl font-extrabold text-green-900 mt-2">
-                    <!-- PHP: echo $countHerbivore -->
-                    0
+                    
+                    <?php echo $countHerbivore; ?>
                 </p>
             </div>
 
@@ -283,8 +282,7 @@ $result = $con->query($sql);
             <div class="bg-blue-100 p-6 rounded-xl shadow">
                 <h3 class="text-xl font-bold text-blue-700">Omnivores</h3>
                 <p class="text-3xl font-extrabold text-blue-900 mt-2">
-                    <!-- PHP: echo $countOmnivore -->
-                    0
+                   <?php echo $countOmnivore; ?>
                 </p>
             </div>
 
