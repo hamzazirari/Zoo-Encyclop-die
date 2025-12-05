@@ -1,14 +1,27 @@
 <?php 
 include "connexion.php";
+
+$sql = "SELECT animal.*, habitats.nom_hab
+        FROM animal
+        JOIN habitats ON animal.habitat_id = habitats.id_hab";
+
+$result = $con->query($sql);
+
+
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zoo Kids - Gestion Simple</title>
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body class="bg-gray-50 min-h-screen">
     
@@ -100,129 +113,70 @@ include "connexion.php";
         </div>
 
         <!-- SECTION ANIMAUX -->
-        <div class="mb-8">
-            <div class="flex justify-center mb-8">
-    <h2 class="text-2xl font-bold text-gray-800">🐾 Nos Animaux</h2>
-</div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Carte Animal 1 (exemple statique) -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <!-- Image -->
-                    <!-- PHP: <img src="<?php echo $animal['image']; ?>" alt="..." class="w-full h-40 object-cover bg-yellow-200"> -->
-                    <div class="w-full h-40 bg-yellow-200 flex items-center justify-center">
-                        <span class="text-6xl">🦁</span>
-                    </div>
-                    
-                    <!-- Infos -->
-                    <div class="p-4">
-                        <!-- PHP: echo $animal['nom']; -->
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Simba</h3>
-                        
-                        <!-- PHP: echo $animal['type_alimentaire']; -->
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Carnivore</p>
-                        
-                        <!-- PHP: echo $animal['habitat']; -->
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Savane</p>
-                        
-                        <!-- Boutons d'action -->
-                        <div class="flex gap-2">
-                            <!-- PHP: <a href="update.php?id=<?php echo $animal['id']; ?>"> -->
-                            <a href="update.php?id=1" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">
-                                Modifier
-                            </a>
-                            
-                            <!-- PHP: <a href="delete.php?id=<?php echo $animal['id']; ?>"> -->
-                            <a href="delete.php?id=1" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">
-                                Supprimer
-                            </a>
-                        </div>
-                    </div>
-                </div>
+       <div class="mb-8">
+    <div class="flex justify-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">🐾 Nos Animaux</h2>
+    </div>
 
-                <!-- Carte Animal 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="w-full h-40 bg-gray-300 flex items-center justify-center">
-                        <span class="text-6xl">🐘</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dumbo</h3>
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Herbivore</p>
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Savane</p>
-                        <div class="flex gap-2">
-                            <a href="update.php?id=2" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">Modifier</a>
-                            <a href="delete.php?id=2" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">Supprimer</a>
-                        </div>
-                    </div>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <?php 
+        if ($result->num_rows > 0) {
+         while ($animal = $result->fetch_assoc()) {
 
-                <!-- Carte Animal 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="w-full h-40 bg-green-200 flex items-center justify-center">
-                        <span class="text-6xl">🐵</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">George</h3>
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Omnivore</p>
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Jungle</p>
-                        <div class="flex gap-2">
-                            <a href="update.php?id=3" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">Modifier</a>
-                            <a href="delete.php?id=3" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">Supprimer</a>
-                        </div>
-                    </div>
-                </div>
+        ?>
 
-                <!-- Carte Animal 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="w-full h-40 bg-orange-200 flex items-center justify-center">
-                        <span class="text-6xl">🦊</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Robin</h3>
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Omnivore</p>
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Désert</p>
-                        <div class="flex gap-2">
-                            <a href="update.php?id=4" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">Modifier</a>
-                            <a href="delete.php?id=4" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">Supprimer</a>
-                        </div>
-                    </div>
-                </div>
+        <!-- Carte Animal -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="w-full h-40">
+        <img src="images/<?= $animal["image"] ?>" class="w-full h-40 object-cover">
+          </div>
+          <div class="p-4">
+          <h3 class="text-xl font-bold text-gray-800 mb-2">
+          <?= $animal["nom_animal"] ?>
+          </h3>
+           <p class="text-gray-600 text-sm mb-1">
+           <strong>Type :</strong> <?= $animal["type_alimentaire"] ?>
+           </p>
+            <p class="text-gray-600 text-sm mb-4">
+              <strong>Habitat :</strong> <?= $animal["nom_hab"] ?>
+            </p>
 
-                <!-- Carte Animal 5 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="w-full h-40 bg-blue-200 flex items-center justify-center">
-                        <span class="text-6xl">🐬</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Flipper</h3>
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Carnivore</p>
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Océan</p>
-                        <div class="flex gap-2">
-                            <a href="update.php?id=5" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">Modifier</a>
-                            <a href="delete.php?id=5" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">Supprimer</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex gap-2">
+ 
+            <!-- Bouton modifier -->
+            <form action="modifier.php" method="POST">
+             <input type="hidden" name="id_animal" 
+              value="<?= $animal["id_animal"] ?>">
+             <button class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600">
+                 Modifier
+                </button>
+               </form>
 
-                <!-- Carte Animal 6 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <div class="w-full h-40 bg-purple-200 flex items-center justify-center">
-                        <span class="text-6xl">🐪</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Camelia</h3>
-                        <p class="text-gray-600 text-sm mb-1"><strong>Type :</strong> Herbivore</p>
-                        <p class="text-gray-600 text-sm mb-4"><strong>Habitat :</strong> Désert</p>
-                        <div class="flex gap-2">
-                            <a href="update.php?id=6" class="flex-1 text-center bg-blue-500 text-white font-medium py-2 rounded-lg hover:bg-blue-600 transition">Modifier</a>
-                            <a href="delete.php?id=6" class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600 transition">Supprimer</a>
-                        </div>
-                    </div>
+                    <!-- Bouton supprimer -->
+                    <form action="supprimer.php" method="POST">
+                   <input type="hidden" name="id_animal" 
+                    value="<?= $animal["id_animal"] ?>">
+                    <button class="flex-1 text-center bg-red-500 text-white font-medium py-2 rounded-lg hover:bg-red-600">
+                     Supprimer
+                   </button>
+                    </form>
+
                 </div>
 
             </div>
-            <!-- PHP: Fermeture de la boucle } -->
+
         </div>
+
+        <?php 
+            }
+        } else {
+            echo "Aucun animal trouvé.";
+        }
+        ?>
+
+    </div>
+</div>
 
         <!-- BOUTON AJOUTER UN ANIMAL -->
         <div class="text-center">
@@ -250,15 +204,15 @@ include "connexion.php";
                 </button>
             </div>
             <!-- Modal body -->
-           <form action="ajouter.php" method="POST" class="pt-4 md:pt-6" enctype="multipart/form-data">
+           <form action="ajouter.php" method="post" class="pt-4 md:pt-6" enctype="multipart/form-data">
                 <div class="mb-4">
                     <label for="nom" class="block mb-2.5 text-sm font-medium text-heading">Nom de l'animal</label>
-                    <input type="text" id="nom" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" placeholder="Nom animal" required />
+                    <input type="text" name="nom" id="nom" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" placeholder="Nom animal" required />
                 </div>
                 <div class="mb-4">
                     <label  class="block mb-2.5 text-sm font-medium text-heading">Type alimentaire</label>
                    <select name="type_alimentaire" id="select-typeAlimentaire" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" >
-                    <option value="" disalbled selected>Type alimentaire</option>
+                    <option value="" disabled selected>Type alimentaire</option>
                     <option value="Carnivore">Carnivore</option>
                     <option value="Herbivore">Herbivore</option>
                     <option value="Omnivore">Omnivore</option>
@@ -268,12 +222,12 @@ include "connexion.php";
 
                  <div class="mb-4">
                     <label  class="block mb-2.5 text-sm font-medium text-heading">Habitat</label>
-                   <select name="habitat" id="select-typeAlimentaire" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" >
-                    <option value="" disalbled selected>Habitat</option>
-                    <option value="Savane Africaine">Savane Africaine</option>
-                    <option value="ocean">ocean</option>
-                    <option value="jungle">jungle</option>
-                    <option value="desert">desert</option>
+                   <select name="habitat" id="select-habitat" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body rounded-lg" >
+                    <option value="" disabled selected>Habitat</option>
+                    <option value="1">Savane Africaine</option>
+                    <option value="2">ocean</option>
+                    <option value="3">jungle</option>
+                    <option value="4">desert</option>
                    
                    </select>
                 </div>
