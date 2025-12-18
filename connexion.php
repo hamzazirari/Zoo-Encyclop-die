@@ -4,10 +4,10 @@ $username = "root";
 $password = "";
 $dbname = "zoo";
 
-$con = new mysqli($servername,$username,$password,$dbname);
+$con = mysqli_connect($servername,$username,$password,$dbname);
 
-if($con->connect_error){
-    die("erreur connexion ".$con->connect_error);
+if(!$con){
+    die("erreur connexion ");
 }
 else
     echo"connexion reussi";
